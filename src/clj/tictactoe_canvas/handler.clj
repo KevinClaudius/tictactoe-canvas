@@ -1,10 +1,12 @@
 (ns tictactoe-canvas.handler
   (:use compojure.core)
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.util.response :as resp]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  ; Returns the resources/public/index.html file.
+  (GET "/" [] (resp/file-response "index.html" {:root "resources/public"}))
   (route/resources "/")
   (route/not-found "Not Found"))
 

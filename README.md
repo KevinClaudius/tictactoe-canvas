@@ -1,6 +1,6 @@
 # tictactoe-canvas
 
-FIXME
+This projects
 
 ## Prerequisites
 
