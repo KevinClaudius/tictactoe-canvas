@@ -36,4 +36,8 @@
   []
   (log "TODO I should draw a grid")
   ; Draws a diagonal line to demonstrate it works
-  (draw-line 0 0 (canvas-width) (canvas-width)))
+  (draw-line (/ (canvas-width) 3) 0 (/ (canvas-width) 3) (canvas-width))
+  (draw-line (* (canvas-width) .66) 0 (* (canvas-width) .66) (canvas-width))
+  (draw-line 0 (/ (canvas-width) 3) (canvas-width) (/ (canvas-width) 3))
+  (draw-line 0 (* (canvas-width) .66) (canvas-width) (* (canvas-width) .66))
+  )
