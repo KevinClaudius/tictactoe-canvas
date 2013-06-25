@@ -14,7 +14,12 @@
 ; The current state of the game
 (def game (atom nil))
 
-; TODO add a watcher on the game state. When the game is updated it should update the displayed state.
+(defn handle-game-update 
+  "Handles an update to the game atom."
+  [watch-key game-atom old-game new-game]
+  (log (str "Game updated " new-game))
+  ; TODO draw the updated game on the browser
+  )
 
 (defn handle-mousemove! [event]
   (let [x (. event -offsetX)
@@ -40,6 +45,9 @@
   (log "Kickoff starting")
   (enable-mouse!)
   (canvas/draw-grid)
+  
+  ; Add a watch on the game atom
+  (add-watch game :game-updates handle-game-update)
   
   ; Last but not least set the current state as a new game
   (swap! game new-game)
