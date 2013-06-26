@@ -1,5 +1,5 @@
 (ns game
-  (:use [util :only [log]])
+  (:use [util :only [log floor]])
   (:require-macros [jayq.macros])
   (:require [tictactoe-canvas :as canvas]
             [goog.events :as events]))
@@ -8,7 +8,7 @@
   "Constructs a new game state. A 3x3 matrix of :b (blank), :x or :o"
   []
   [[:b :b :b]
-   [:b :b :b]
+   [:b :x :b]
    [:b :b :b]])
 
 ; The current state of the game
@@ -26,10 +26,16 @@
         y (. event -offsetY)]
     #_(log (str "x and y within canvas " x ", " y ))))
 
+(defn detect-row [y]
+  (util/floor (/ y (/ (canvas/canvas-width) 3))))
+
 (defn handle-mouseclick! [event]
   (let [x (. event -offsetX)
-        y (. event -offsetY)]
-    (log (str "Clicked: " x ", " y ))))
+        y (. event -offsetY)
+        row (detect-row y)
+        col (detect-row x)]
+    (log (str "Clicked: " x ", " y " and found " ((@game row) col)))))
+
 
 (defn enable-mouse! 
   "Connects mouse events to ClojureScript functions."

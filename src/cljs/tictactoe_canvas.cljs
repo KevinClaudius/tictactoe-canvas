@@ -15,6 +15,11 @@
 (defn canvas-width []
   (.-width (canvas)))
 
+(defn canvas-height []
+  (.-height (canvas)))
+
+(defn firstthird)
+
 (defn draw-line 
   "Draws a line from x1,y1 to x2,y2. 
   Supports options: color and line width"
